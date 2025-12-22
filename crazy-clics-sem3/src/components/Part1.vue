@@ -11,4 +11,8 @@ const emit = defineEmits(['correctTheWord'])
   </button>
 </template>
 
-<style scoped></style>
+<style scoped>
+button {
+  background-color: aquamarine;
+}
+</style>

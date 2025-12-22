@@ -8,8 +8,12 @@ const emit = defineEmits(['convertToCm'])
 
 <template>
   <button v-for="number in numbersList" :key="number" @click="$emit('convertToCm', number)">
-    {{ number }}
+    {{ number }} km
   </button>
 </template>
 
-<style></style>
+<style scoped>
+button {
+  background-color: violet;
+}
+</style>

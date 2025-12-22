@@ -54,23 +54,93 @@ const convertNumberToCm = (number) => {
   <main>
     <h1>Crazy clics v2</h1>
     <section>
-      <div>
-        <div>
+      <div class="left-side">
+        <div >
           <Part1 @correctTheWord="handleWordCorrection" />
         </div>
-        <div>
+        <div >
           <Part2 @getRandomColor="getRandomColor" />
         </div>
-        <div>
+        <div >
           <Part3 @convertToCm="convertNumberToCm" />
         </div>
       </div>
-      <div>
-        <h2>Le resultat</h2>
-        <p>{{ result }}</p>
+
+      <div class="result">
+        <h2><span>&#128071</span>Le résultat <span>&#128071</span></h2>
+        
+        <div>
+          <p>{{ result }}</p>
+        </div>
+        
       </div>
     </section>
+   
   </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+  h1 {
+    /* border: 1px solid salmon; */
+    font-weight: bold;
+    font-size: 30px;
+   text-align: center;
+   margin: 25px 0px 100px 0px
+  }
+
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+section{
+  /* border: 1px solid pink; */
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+
+}
+
+.left-side{
+  /* border:1px solid royalblue; */
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+
+  
+}
+
+.left-side >div {
+  /* border: 1px solid red; */
+  display: flex;
+  gap: 40px;
+  justify-content: space-around;
+  align-items: center;
+  
+}
+
+
+.result{
+  /* border: 1px solid greenyellow; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.result div {
+  border: 4px solid grey;
+  width: 250px;
+  height:40px
+}
+
+.result p {
+  text-align: center;
+  padding: 15px 0px;
+  font-size: 12px;
+  
+}
+
+</style>
