@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive, computed } from 'vue'
+import { ref, computed } from 'vue'
 
 const numbers = ref([76, 876, 467, 2, 67, 3, 90, 7, 678])
 
@@ -11,6 +11,8 @@ const average = computed(() => {
   return total / numbers.value.length
 })
 
+// RMQ : On aurait pu stocker numbers.value[i] dans une variable pour clarifier le code
+
 const addNumber = () => {
   const randomNumber = Math.floor(Math.random() * 1000)
   numbers.value.push(randomNumber)
@@ -19,7 +21,7 @@ const addNumber = () => {
 
 <template>
   <p>{{ numbers }}</p>
-  <p>{{ average }}</p>
+  <p>Moyenne du tableau : {{ average }}</p>
   <button @click="addNumber">Ajouter un nombre aléatoire</button>
 </template>
 <style scoped></style>

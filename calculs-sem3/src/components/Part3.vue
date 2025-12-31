@@ -9,14 +9,28 @@ const user = {
 const currentTime = ref(new Date().getHours())
 console.log(currentTime.value)
 
-const welcomingLine = computed(() => {
-  if (currentTime.value > 0 && currentTime.value < 12) {
-    return `Bonjour`
-  } else if (currentTime.value >= 12 && currentTime.value < 18) {
-    return `Bon après-midi`
+// const sentence = computed(() => {
+//   if (currentTime.value > 0 && currentTime.value < 12) {
+//     return `Bonjour`
+//   } else if (currentTime.value >= 12 && currentTime.value < 18) {
+//     return `Bon après-midi`
+//   } else {
+//     return `Bonsoir`
+//   }
+// })
+
+// correction :
+const sentence = computed(() => {
+  // on initialise une variable qui sera la sentence aavec une cdc vide:
+  let greetings = ''
+  if (currentTime.value < 12) {
+    greetings = 'Bonjour'
+  } else if (currentTime.value < 18) {
+    greetings = 'Bonne après-midi'
   } else {
-    return `Bonsoir`
+    greetings = 'Bonsoir'
   }
+  return greetings + ' ' + user.firstName + ' ' + user.lastName
 })
 
 const morningTime = () => {
@@ -31,10 +45,21 @@ const eveningTime = () => {
 }
 </script>
 <template>
-  <p>{{ welcomingLine }}, {{ user.firstName }} {{ user.lastName }} !</p>
+  <section>
+    <!--My way :
+     <p>{{ sentence }}, {{ user.firstName }} {{ user.lastName }} !</p> -->
 
-  <button @click="morningTime">Heure de la matinée</button>
-  <button @click="afternoonTime">Heure de l'après-midi</button>
-  <button @click="eveningTime">Heure de la soirée</button>
+    <!-- correction : toutes les infos sont return dans greetings grâce à une concatenation (cf. script ligne 33) -->
+    <p>{{ sentence }}</p>
+
+    <button @click="morningTime">Heure de la matinée</button>
+    <button @click="afternoonTime">Heure de l'après-midi</button>
+    <button @click="eveningTime">Heure de la soirée</button>
+
+    <!-- correction pour les boutons avec la logique à executer direct entre les gillemets (beaucoup plus clair et plus rapide!): -->
+    <!-- <button @click="currentTime=8">Heure de la matinée</button>
+    <button @click="currentTime=16">Heure de l'après-midi</button>
+    <button @click="currentTime=22">Heure de la soirée</button> -->
+  </section>
 </template>
 <style scoped></style>

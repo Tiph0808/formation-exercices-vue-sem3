@@ -61,27 +61,34 @@ const users = ref([
   },
 ])
 
+// on aurait pu calculer le nombre d'utilisateurs en utilsant la pp computed :
+// const numOfMembers=computed=(()=>{
+// return users.value.length
+// })
+
 const numberOfBooks = computed(() => {
   let total = 0
   for (let i = 0; i < users.value.length; i++) {
-    total = total + users.value[i].books.length
+    const booksRead = users.value[i].books.length
+    total = total + booksRead
   }
   return total
 })
 
-console.log(numberOfBooks.value)
+// console.log(numberOfBooks.value)
 
-const numberOPages = computed(() => {
+const numberOfPages = computed(() => {
   let total = 0
   for (let i = 0; i < users.value.length; i++) {
     for (let j = 0; j < users.value[i].books.length; j++) {
+      // deuxieme boucle sur le tableau de la clé books. (On aurait pu stocker users.value[i].books dans une variable pour clarifier le code)
       total = total + users.value[i].books[j].numOfPages
     }
   }
   return total
 })
 
-console.log(numberOPages.value)
+// console.log(numberOfPages.value)
 
 const addUser = () => {
   users.value.push({
@@ -103,6 +110,8 @@ const addUser = () => {
 </script>
 <template>
   <p>Le groupe de lecture compte {{ users.length }} membres</p>
+  <!--correction plus optimale pour la performance (selon la correction) : calculer le nombre d'utilisateurs avec une pp computed, pour l'affichage on aurait ecrit : {{ numOfMembers }}-->
+
   <p>
     A eux {{ users.length }}, ils ont lu {{ numberOfBooks }} livres pour un total de
     {{ numberOPages }} pages.
