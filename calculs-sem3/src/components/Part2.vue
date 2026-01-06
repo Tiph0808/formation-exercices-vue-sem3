@@ -109,13 +109,39 @@ const addUser = () => {
 }
 </script>
 <template>
-  <p>Le groupe de lecture compte {{ users.length }} membres</p>
-  <!--correction plus optimale pour la performance (selon la correction) : calculer le nombre d'utilisateurs avec une pp computed, pour l'affichage on aurait ecrit : {{ numOfMembers }}-->
+  <div>
+    <p>
+      Le groupe de lecture compte <span>{{ users.length }}</span> membres
+    </p>
+    <!--correction plus optimale pour la performance (selon la correction) : calculer le nombre d'utilisateurs avec une pp computed, pour l'affichage on aurait ecrit : {{ numOfMembers }}-->
 
-  <p>
-    A eux {{ users.length }}, ils ont lu {{ numberOfBooks }} livres pour un total de
-    {{ numberOPages }} pages.
-  </p>
-  <button @click="addUser">Ajouter un utilisateur</button>
+    <p>
+      A eux <span>{{ users.length }}</span
+      >, ils ont lu <span>{{ numberOfBooks }}</span> livres pour un total de
+      <span>{{ numberOfPages }}</span> pages.
+    </p>
+    <button @click="addUser">Ajouter un membre</button>
+  </div>
 </template>
-<style scoped></style>
+
+<style scoped>
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 80px;
+}
+
+span {
+  color: orange;
+}
+
+button {
+  color: orange;
+  border: 2px solid orange;
+  padding: 5px 10px;
+  background-color: white;
+  border-radius: 3px;
+}
+</style>
