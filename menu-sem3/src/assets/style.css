@@ -18,15 +18,6 @@
   margin-bottom: 15px;
 }
 
-.text {
-  border: 1px solid gray;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  height: 100px;
-  overflow: hidden;
-}
-
 .author {
   /* border: 1px solid blue; */
   display: flex;

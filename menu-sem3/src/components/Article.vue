@@ -8,7 +8,7 @@ const props = defineProps({
 <template>
   <section class="content-card">
     <h2>{{ selection.title }}</h2>
-
+    <!-- la methode split retourne un tableau , on boucle dessus pour obtenir nos paragraphes -->
     <p v-for="paragraph in selection.content.split('\n')">{{ paragraph }}</p>
 
     <p class="author" v-if="selection.author">{{ selection.author.name }}</p>
