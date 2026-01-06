@@ -1,43 +1,77 @@
 <script setup>
 import { ref, computed } from 'vue'
-import articles from './assets/data.json'
-console.log(articles)
+import Article from './components/Article.vue'
+import Book from './components/Book.vue'
+import Header from './components/Header.vue'
 
-const selectedArticle = ref(null)
+// console.log(data)
 
-const handleClick = (article) => {
-  selectedArticle.value = article
+// on crée une valeur reactive ou l'on stockera l'element selectionné, les elements sont des objets donc on initialise notre valeur reactive avec un objet vide :
+const selection = ref({})
+
+const selectElement = (element) => {
+  selection.value = element
 }
 
 const averageRate = computed(() => {
   let total = 0
-  for (let i = 0; i < selectedArticle.value.rates.length; i++) {
-    total = total + selectedArticle.value.rates[i]
+  // notre tableau de rates se trouve a la clé selection.value.rates, on crée donc une variable pour faciliter la syntaxe :
+  const ratesList = selection.value.rates
+  for (let i = 0; i < ratesList.length; i++) {
+    total = total + ratesList[i]
   }
-  return total / selectedArticle.value.rates.length
+  return total / ratesList.length
 })
 </script>
 
 <template>
-  <header>
-    <button v-for="article in articles" :key="article.id" @click="handleClick(article)">
-      {{ article.title }}({{ article.category }})
-    </button>
-  </header>
+  <Header @elementSelected="selectElement" />
+
   <main>
-    <p v-if="!selectedArticle">Faites votre choix</p>
-    <div v-else-if="selectedArticle.category === 'livre'">
-      <p>{{ selectedArticle.synopsis }}</p>
-      <p v-if="selectedArticle.author">{{ selectedArticle.author }}</p>
-      <p>{{ averageRate }}</p>
-      <p v-if="selectedArticle.numberOfPage < 250">Petit Livre</p>
-    </div>
-    <div v-else-if="selectedArticle.category === 'article'">
-      <p>{{ selectedArticle.content }}</p>
-      <p v-if="selectedArticle.author">{{ selectedArticle.author.name }}</p>
-      <p>{{ averageRate }}</p>
-    </div>
+    <Article
+      v-if="selection.category === 'article'"
+      :selection="selection"
+      :average="averageRate"
+    />
+
+    <Book
+      v-else-if="selection.category === 'livre'"
+      :selection="selection"
+      :average="averageRate"
+    />
+
+    <p v-else class="sentence">Faites votre choix !</p>
   </main>
+  <footer>
+    <button @click="selection = {}">Reset</button>
+  </footer>
 </template>
 
-<style scoped></style>
+<style scoped>
+main {
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sentence {
+  font-size: 30px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px #f6ab09;
+}
+
+footer {
+  padding: 50px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+footer button {
+  background-color: #f6ab09;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+}
+</style>
