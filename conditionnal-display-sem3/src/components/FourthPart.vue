@@ -27,11 +27,11 @@ const usersList = [
 </script>
 <template>
   <div>
-    <div v-for="user in usersList" :key="user.id">
+    <div class="user-card" v-for="user in usersList" :key="user.id">
       <img v-if="user.account.avatar" :src="user.account.avatar.url" alt="" />
       <font-awesome-icon :icon="['fas', 'user']" v-if="!user.account.avatar" />
 
-      <div>
+      <div class="user-infos">
         <p>{{ user.firstname }}</p>
         <p>{{ user.lastname }}</p>
         <p>{{ user.age }} ans</p>
@@ -40,9 +40,39 @@ const usersList = [
   </div>
 </template>
 <style scoped>
-img {
-  height: 30px;
-  width: 30px;
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.user-card {
+  border: solid 1px black;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  height: 100px;
+  width: 200px;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.user-card img {
+  height: 100%;
+  width: 40%;
   object-fit: cover;
+  border-radius: 10px;
+}
+
+.user-card svg {
+  height: 100%;
+  width: 40%;
+}
+
+.user-infos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 </style>

@@ -11,4 +11,23 @@ const liked = ref(true)
      Rappel du cours : "v-show est à privilegier sur des elements frequemment masqués/affichés (l'élément restera dans le DOM)" -->
   </div>
 </template>
-<style scoped></style>
+<style scoped>
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+svg {
+  font-size: 30px;
+}
+
+div > svg:first-child {
+  color: green;
+}
+
+div > svg:last-child {
+  color: red;
+}
+</style>
