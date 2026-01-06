@@ -26,7 +26,7 @@ const usersList = [
 ]
 </script>
 <template>
-  <div>
+  <div class="fourth-part">
     <div class="user-card" v-for="user in usersList" :key="user.id">
       <img v-if="user.account.avatar" :src="user.account.avatar.url" alt="" />
       <font-awesome-icon :icon="['fas', 'user']" v-if="!user.account.avatar" />
@@ -39,8 +39,43 @@ const usersList = [
     </div>
   </div>
 </template>
+
 <style scoped>
-div {
+img {
+  height: 100%;
+  width: 40%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.user-card {
+  border: 1px solid black;
+  height: 150px;
+  width: 250px;
+  padding: 10px;
+  display: flex;
+  gap: 5px;
+  border-radius: 8px;
+}
+
+.fourth-part {
+  display: flex;
+  gap: 20px;
+}
+
+svg {
+  height: 100%;
+  font-size: 80px;
+}
+
+.user-infos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* div {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,5 +109,5 @@ div {
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
+} */
 </style>

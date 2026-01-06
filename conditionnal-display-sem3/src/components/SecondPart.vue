@@ -12,7 +12,20 @@ const liked = ref(true)
   </div>
 </template>
 <style scoped>
-div {
+svg {
+  font-size: 30px;
+  margin-bottom: 50px;
+  cursor: pointer;
+}
+
+svg:first-child {
+  color: green;
+}
+svg:last-child {
+  color: red;
+}
+
+/* div {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,5 +42,5 @@ div > svg:first-child {
 
 div > svg:last-child {
   color: red;
-}
+} */
 </style>

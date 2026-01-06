@@ -6,19 +6,26 @@ import FourthPart from './components/FourthPart.vue'
 </script>
 
 <template>
-  <h1>Conditionnal display</h1>
+  <main>
+    <h1>Conditional display</h1>
 
-  <FirstPart />
-  <SecondPart />
-  <ThirdPart />
-  <FourthPart />
+    <FirstPart />
+    <SecondPart />
+    <ThirdPart />
+    <FourthPart />
+  </main>
 </template>
 
 <style scoped>
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 h1 {
-  text-align: center;
-  font-size: 30px;
+  font-size: 54px;
   font-weight: bold;
-  margin: 30px 0px 50px;
+  margin-bottom: 50px;
 }
 </style>
