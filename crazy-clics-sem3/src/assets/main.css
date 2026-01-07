@@ -1,6 +1,12 @@
 @import './base.css';
 
-body {
+button {
+  cursor: pointer;
+}
+
+/* style my way*/
+
+/* body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -9,4 +15,4 @@ button {
   border: none;
   font-weight: bold;
   border-radius: 3px;
-}
+} */

@@ -18,9 +18,16 @@ const result = ref('') // on initialise avec une str vide
 
 //Declaration de la fonction declenchée a l'écoute de l'evenement 'correctTheWord'
 const handleWordCorrection = (word) => {
-  result.value = word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+ // my way :
+  // result.value = word[0].toUpperCase() + word.slice(1).toLowerCase()
+
+ // correction :
+const firstLetter =word[0].toUpperCase()
+const otherLetters = word.slice(1).toLowerCase()
+result.value= firstLetter + otherLetters
+
 }
-// Autre méthode, avec une boucle :) :
+// Autre méthode, avec une boucle :) (pour le fun!) :
 // const handleWordCorrection = (word) => {
 //   let correctedWord = ''
 //   for (let i = 0; i < word.length; i++) {
@@ -39,7 +46,7 @@ import { colorsList } from './utils/data.js'
 // console.log(colorsList)
 
 const getRandomColor = () => {
-  const randomIndex = Math.floor(Math.random() * colorsList.length) // ici Math.random selectionne un nombre aleatoire entre 0 et 9  (ex: 2,2566), Mat.floor arrondi ce nombre a l'entier naturel inferieur (2,2566 => 2)
+  const randomIndex = Math.floor(Math.random() * colorsList.length) // ICI Math.random mulitiplié par la longueur du tableau renvoie un nombre aleatoire entre 0 et 1 mulitiplié par 11 (ex: 2,2566 ; 10,648 etc... 11 exclu!), Mat.floor arrondi ce nombre a l'entier naturel inferieur (2,2566 => 2), on obtiendra donc un nb entier entre 0 et 10
   result.value = colorsList[randomIndex]
 }
 
@@ -54,25 +61,19 @@ const convertNumberToCm = (number) => {
   <main>
     <h1>Crazy clics v2</h1>
     <section>
-      <div class="left-side">
+      
         <div >
           <Part1 @correctTheWord="handleWordCorrection" />
-        </div>
-        <div >
+        
           <Part2 @getRandomColor="getRandomColor" />
-        </div>
-        <div >
+       
           <Part3 @convertToCm="convertNumberToCm" />
         </div>
-      </div>
-
-      <div class="result">
+      
+      <div >
         <h2><span>&#128071</span>Le résultat <span>&#128071</span></h2>
-        
-        <div>
-          <p>{{ result }}</p>
-        </div>
-        
+         
+        <p>{{ result }}</p>
       </div>
     </section>
    
@@ -80,39 +81,87 @@ const convertNumberToCm = (number) => {
 </template>
 
 <style scoped>
-  h1 {
-    /* border: 1px solid salmon; */
-    font-weight: bold;
-    font-size: 30px;
-   text-align: center;
-   margin: 25px 0px 100px 0px
+
+main {
+  padding: 30px;
+  /* background-color: pink; */
+  height: 100vh;
+  display:flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  margin-bottom:50px
   }
 
+
 h2 {
+  font-size: 22px;
+  font-weight: bold;
+}  
+
+section{
+  display: flex;
+  flex:1
+}
+
+section > div {
+  /* border:1px coral solid; */
+  display: flex;
+  flex-direction: column;
+}
+
+section>div:first-child{
+  flex:1;
+  justify-content: space-around;
+  align-items: center;
+}
+
+section > div:last-child {
+width: 200px;
+align-items: center;
+justify-content: center;
+}
+
+p {
+  border: 2px solid black;
+  height: 40px;
+  width: 90%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;}
+
+</style>
+
+
+<!--style  my way (class left-side appliquée a la premiere div , result a la deuxieme): -->
+
+<!--/* h2 {
   font-size: 20px;
   font-weight: bold;
 }
-
 
 section{
   /* border: 1px solid pink; */
   display: flex;
   justify-content: center;
   gap: 100px;
-
 }
 
 .left-side{
-  /* border:1px solid royalblue; */
+  border:1px solid royalblue;
   display: flex;
   flex-direction: column;
   gap: 80px;
-
-  
 }
 
 .left-side >div {
-  /* border: 1px solid red; */
+  border: 1px solid red;
   display: flex;
   gap: 40px;
   justify-content: space-around;
@@ -120,9 +169,8 @@ section{
   
 }
 
-
 .result{
-  /* border: 1px solid greenyellow; */
+  border: 1px solid greenyellow;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -141,6 +189,6 @@ section{
   padding: 15px 0px;
   font-size: 12px;
   
-}
+} */ -->
 
-</style>
+
