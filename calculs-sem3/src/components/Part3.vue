@@ -51,11 +51,13 @@ const eveningTime = () => {
 
     <!-- correction : toutes les infos sont return dans greetings grâce à une concatenation (cf. script ligne 33) -->
     <p>{{ sentence }}</p>
+
     <div>
       <button @click="morningTime">Heure de la matinée</button>
       <button @click="afternoonTime">Heure de l'après-midi</button>
       <button @click="eveningTime">Heure de la soirée</button>
     </div>
+
     <!-- correction pour les boutons avec la logique à executer direct entre les gillemets (beaucoup plus clair et plus rapide!): -->
     <!-- <button @click="currentTime=8">Heure de la matinée</button>
     <button @click="currentTime=16">Heure de l'après-midi</button>
@@ -64,19 +66,16 @@ const eveningTime = () => {
 </template>
 
 <style scoped>
-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-
 button {
-  margin: 0px 10px;
   color: #39b974;
   border: 2px solid #39b974;
   padding: 5px 10px;
   background-color: white;
   border-radius: 3px;
+}
+
+/* On cible uniquement nos deux premiers bouttons : */
+button:not(button:last-child) {
+  margin-right: 10px;
 }
 </style>

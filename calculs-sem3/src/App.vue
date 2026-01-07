@@ -7,8 +7,11 @@ import Part3 from './components/Part3.vue'
 <template>
   <main>
     <h1>A vos calculs !</h1>
+
     <Part1 />
+
     <Part2 />
+
     <Part3 />
   </main>
 </template>
@@ -18,11 +21,12 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 30px;
+  gap: 50px;
 }
 
 h1 {
   font-size: 30px;
-  margin: 50px auto;
   font-weight: bold;
 }
 </style>

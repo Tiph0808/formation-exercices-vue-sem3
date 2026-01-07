@@ -20,22 +20,15 @@ const addNumber = () => {
 </script>
 
 <template>
-  <div>
+  <section>
     <p>Moyenne du tableau : {{ numbers }}</p>
     <p id="average">{{ average }}</p>
     <button @click="addNumber">Ajouter un nombre aléatoire</button>
-  </div>
+  </section>
 </template>
-<style scoped>
-div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 80px;
-}
 
-#average {
+<style scoped>
+p:nth-child(2) {
   font-weight: bold;
   color: #7676d8;
 }

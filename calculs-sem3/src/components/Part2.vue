@@ -109,7 +109,7 @@ const addUser = () => {
 }
 </script>
 <template>
-  <div>
+  <section>
     <p>
       Le groupe de lecture compte <span>{{ users.length }}</span> membres
     </p>
@@ -121,20 +121,13 @@ const addUser = () => {
       <span>{{ numberOfPages }}</span> pages.
     </p>
     <button @click="addUser">Ajouter un membre</button>
-  </div>
+  </section>
 </template>
 
 <style scoped>
-div {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 80px;
-}
-
 span {
   color: orange;
+  font-weight: bold;
 }
 
 button {
