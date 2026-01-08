@@ -40,13 +40,48 @@ const averageRate = computed(() => {
       :average="averageRate"
     />
 
-    <p v-else class="sentence">Faites votre choix !</p>
+    <p v-else>Faites votre choix !</p>
   </main>
+
   <footer>
     <button @click="selection = {}">Reset</button>
   </footer>
 </template>
 
+<style scoped>
+p {
+  font-weight: bold;
+  font-size: 30px;
+  text-shadow: 1px 1px 2px var(--yellow);
+}
+
+main {
+  /* background-color: pink; */
+  /*pour que le main prenne tout l espace dispo : 100vh - taille du header - taille du footer*/
+  height: calc(100vh - (var(--header-height)) - (var(--footer-height)));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
+  display: flex;
+  height: var(--footer-height);
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 20px;
+}
+
+button {
+  background-color: #f6ab09;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+}
+</style>
+
+<!-- style my way :  
 <style scoped>
 main {
   height: 600px;
@@ -55,7 +90,7 @@ main {
   align-items: center;
 }
 
-.sentence {
+p {
   font-size: 30px;
   font-weight: bold;
   text-shadow: 1px 1px 2px #f6ab09;
@@ -74,4 +109,4 @@ footer button {
   border-radius: 5px;
   border: none;
 }
-</style>
+</style> -->

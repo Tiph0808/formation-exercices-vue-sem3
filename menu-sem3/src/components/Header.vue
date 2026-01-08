@@ -9,15 +9,36 @@ const emit = defineEmits(['elementSelected'])
 
 <template>
   <header>
-    <div>
-      <button v-for="element in data" :key="element.id" @click="emit('elementSelected', element)">
-        <span>{{ element.title }} </span>({{ element.category }})
-      </button>
-    </div>
+    <button v-for="element in data" :key="element.id" @click="emit('elementSelected', element)">
+      {{ element.title }} <span>({{ element.category }})</span>
+    </button>
   </header>
 </template>
 
 <style scoped>
+header {
+  display: flex;
+  justify-content: space-around;
+  height: var(--header-height);
+  align-items: center;
+}
+
+button {
+  font-weight: bold;
+  border: 1px solid var(--yellow);
+  background-color: white;
+  padding: 7px 10px;
+  color: var(--yellow);
+}
+
+span {
+  color: black;
+}
+</style>
+
+<!-- MY WAY : (attention la correction aura surement changé aussi la structure du template)
+
+<style scoped> 
 header {
   /* border: 1px solid green; */
   height: 150px;
@@ -49,4 +70,4 @@ button span {
   padding-right: 5px;
   font-weight: bold;
 }
-</style>
+</style> -->

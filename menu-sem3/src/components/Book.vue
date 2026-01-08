@@ -6,26 +6,57 @@ const props = defineProps({
 
 import { ref } from 'vue'
 
-const shortStyle = ref(true)
+// My way :
 
-const changeStyle = () => {
-  shortStyle.value = !shortStyle.value
-}
+// const shortStyle = ref(true)
+
+// const changeStyle = () => {
+//   shortStyle.value = !shortStyle.value
+// }
+
+//correction :
+
+const displayFullSynopsis = ref(false)
 </script>
 
 <template>
-  <section class="content-card">
+  <section>
+    <!--class="content-card"> -->
     <h2>{{ selection.title }}</h2>
 
+    <!-- correction : -->
+    <div
+      class="synopsis"
+      :class="{
+        displayText: displayFullSynopsis, // if truthy
+      }"
+    >
+      <p v-for="paragraph in selection.synopsis.split('\n')" class="paragraph">{{ paragraph }}</p>
+    </div>
+
+    <font-awesome-icon
+      :icon="['fas', 'caret-up']"
+      class="caret"
+      v-if="displayFullSynopsis"
+      @click="displayFullSynopsis = !displayFullSynopsis"
+    />
+    <font-awesome-icon
+      :icon="['fas', 'caret-down']"
+      class="caret"
+      v-else
+      @click="displayFullSynopsis = !displayFullSynopsis"
+    />
+
+    <!-- My way :
     <div v-if="shortStyle" class="text">
       <p v-for="paragraph in selection.synopsis.split('\n')">{{ paragraph }}</p>
       <button @click="changeStyle"><font-awesome-icon :icon="['fas', 'caret-down']" /></button>
     </div>
-
-    <div v-else class="otherText">
+    
+    <div v-else class="other-text">  
       <p v-for="paragraph in selection.synopsis.split('\n')">{{ paragraph }}</p>
       <button @click="changeStyle"><font-awesome-icon :icon="['fas', 'caret-up']" /></button>
-    </div>
+    </div> -->
 
     <div class="author">
       <p v-if="selection.author">{{ selection.author }}</p>
@@ -43,6 +74,49 @@ const changeStyle = () => {
 </template>
 
 <style scoped>
+section {
+  position: relative;
+}
+
+.small-book {
+  position: absolute;
+  top: -25px;
+  right: -25px;
+  background-color: var(--yellow);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.paragraph {
+  margin-bottom: 5px;
+  letter-spacing: 0.2px;
+  line-height: 20px;
+}
+
+.synopsis {
+  height: 100px;
+  overflow: hidden;
+}
+
+.caret {
+  align-self: flex-end;
+}
+
+.displayText {
+  height: fit-content;
+}
+</style>
+
+<!-- style My way : j'ai cree un fichier style.css contenant les styles communs aux deux composants Article et Book -->
+
+<!-- Rmq : Dans la correction, tout est dans le main.css -->
+
+<!-- <style scoped>
 @import '../assets/style.css';
 
 .text {
@@ -77,4 +151,4 @@ button {
   font-size: 14px;
   border-radius: 50%;
 }
-</style>
+</style> -->
